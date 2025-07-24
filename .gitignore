@@ -1,0 +1,6 @@
+# ignore the data directory
+/rare_species\ 1/
+/data/
+data/
+/data_split
+/data
