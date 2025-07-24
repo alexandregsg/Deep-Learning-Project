@@ -1,17 +1,18 @@
 # DL_project_Group33
 
-Deadline: 30th April 
+📝 Description
+This project applies advanced Deep Learning techniques to tackle the challenge of rare species classification from images. Using the BioCLIP dataset, sourced from the Encyclopedia of Life (EOL), which contains over 11,000 images across 202 animal families and associated taxonomic metadata (kingdom, phylum, family), we developed a robust pipeline to preprocess imbalanced and noisy data, train multiple neural network architectures, and deploy an innovative zero-shot classification approach to improve model performance. The ultimate goal is to create a tool that can aid in biodiversity conservation through automated species identification.
 
-Description:
+✨ Objective
+The primary objective is to develop a highly accurate image classification model by:
 
-In this project, you will develop a deep-learning model to classify rare species based on their
-images. The dataset used in this project consists of images of rare species sourced from the
-Encyclopedia of Life (EOL) and curated as part of the BioCLIP: A Vision Foundation Model
-for the Tree of Life [1] study. Each image is associated with metadata, including its kingdom,
-phylum, and family.
-Your objective is to build a model that predicts the family of a given species based on its image.
-The dataset includes a structured CSV file containing the file path of each image alongside its
-corresponding labels. As part of the project, you will need to create your own data splits into
-training, validation, and test sets. The training and validation sets will be used to develop and
-fine-tune your model, while the test set should be kept separate to evaluate its performance on
-unseen data.
+Exploring the complex BioCLIP dataset to understand its structure and inherent challenges, such as severe class imbalance.
+Preprocessing images and implementing data augmentation strategies to create a robust training pipeline.
+Developing and evaluating multiple deep learning models, from a baseline CNN to state-of-the-art pre-trained architectures.
+Innovating with a zero-shot classification pre-filtering step to remove noisy data and enhance model accuracy.
+
+📈 Results & Conclusion
+
+This project consisted of the development of a CNN model capable of predicting the family of a given species based on a dataset of thousands of rare species images sourced from the Encyclopedia of Life. After initial data exploration, several problems were identified: family and phylum imbalances with many underrepresented families, existence of non-RGB images, and the presence of noise label images (images not correctly representative of the family). To tackle these issues, two different outlier removal strategies were tested. However, due to computational and time limitations, manual removal was selected instead of the confident learning approach proposed by Northcutt et al. 2022. To address class imbalance, the method suggested by Langenkämper et al. 2018 was adapted to our case. During the modelling stage, different preprocessing strategies and pre-trained architectures were explored, with the combination of no augmentation, outlier removal, and oversampling applied to the Xception architecture being the winning strategy. To further improve the best model obtained, we implemented Bayesian Optimization following the approach suggested by Vo et al. 2023. Despite performance improvements, the tuned model showed signs of overfitting, leading to the development of a total of six new setups. The first four setups were unsuccessful in reducing overfitting but resulted in the discovery of the best-performing model, using a hybrid transfer  learning approach. The two additional setups tested were successful in reducing overfitting but achieved significantly lower performance. 
+
+As expected, the best-performing model (corresponding to Setup 4) was not a model built from scratch but one that utilized a pre-trained architecture on the ImageNet dataset combined with a hybrid transfer learning approach (following the method proposed by Ferreira et al. 2018). Some limitations of this project should be highlighted. First, no specific strategy was applied to deal with near-duplicate images (images showing the same animal with slight variations, captured in quick succession, Appendix 5.1). Although some near-duplicates were likely removed during the manual outlier removal process, others may have remained, possibly introducing bias by overrepresenting specific visual patterns. Second, the oversampling method used may have contributed to the model's overfitting, since augmentations could have been applied to near-duplicate images. Finally, the selection of manual outlier removal instead of the confident learning approach makes the process more prone to human error and less scalable for future applications to larger datasets.
